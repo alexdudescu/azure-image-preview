@@ -1,0 +1,22 @@
+{
+  "name": "azure-image-preview",
+  "version": "0.0.1",
+  "description": "Azure image viewer",
+  "main": "azure-image-preview.js",
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [
+    "azure",
+    "image",
+    "viewer"
+  ],
+  "author": "Alex Dudescu",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chrome": "^0.0.263",
+    "awesome-image-viewer": "^1.0.60",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.3"
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "entry": [
+        "src/service-worker.ts",
+        "src/azure-image-preview.ts"
+    ],
+    "minify": false,
+    "target": "esnext",
+    "platform": "browser",
+    "format": "cjs",
+    "sourcemap": true,
+    "clean": true,
+    "outDir": "extension/js",
+    "bundle": true
+}
