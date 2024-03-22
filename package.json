@@ -1,6 +1,6 @@
 {
   "name": "azure-image-preview",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Azure image viewer",
   "main": "azure-image-preview.js",
   "scripts": {
