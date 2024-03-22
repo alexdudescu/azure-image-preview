@@ -4,6 +4,7 @@
   "description": "Azure image viewer",
   "main": "azure-image-preview.js",
   "scripts": {
+    "dev": "tsup --watch",
     "build": "tsup"
   },
   "keywords": [
