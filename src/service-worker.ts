@@ -1,23 +1,27 @@
+const regex = /https:\/\/(.*)?.visualstudio.com\/_apis\/resources\/Containers\/(.*)(\.png|\.jpg|\.jpeg|\.webp)/;
+
 // Prevent download of images and show them in browser instead
-chrome.downloads.onCreated.addListener(
-    (item) => {
-        chrome.storage.session.get(['enabled'], (value) => {
+chrome.downloads.onCreated.addListener((item) => {
+    chrome.storage.session.get(['enabled'], (value) => {
 
-            if (!value.enabled) {
-                return;
-            }
+        if (!value.enabled || !item.url.match(regex)) {
+            return;
+        }
 
-            chrome.downloads.cancel(item.id);
+        chrome.downloads.cancel(item.id);
 
-            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-                chrome.tabs.sendMessage(tabs[0].id!, { action: "preview_image", url: item.url });
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            chrome.tabs.sendMessage(tabs[0].id!, {
+                action: "preview_image",
+                url: item.url
             });
+        });
 
-            if (item.state == "complete") {
-                chrome.downloads.removeFile(item.id);
-            }
-        })
-    }
+        if (item.state == "complete") {
+            chrome.downloads.removeFile(item.id);
+        }
+    })
+}
 )
 
 // Handle badge state

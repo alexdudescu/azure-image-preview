@@ -2,16 +2,18 @@ import ImageViewer from 'awesome-image-viewer';
 
 let viewer;
 
-chrome.runtime.onMessage.addListener((message, sender) => {
+chrome.runtime.onMessage.addListener((message) => {
+
+    if (message.action !== "preview_image") {
+        return;
+    }
+
     viewer = null;
 
-    if (message.action === "preview_image") {
-        console.log("Previewing image: " + message.url);
+    viewer = new ImageViewer({
+        images: [{
+            mainUrl: message.url
+        }],
+    });
 
-        viewer = new ImageViewer({
-            images: [{
-                mainUrl: message.url
-            }],
-        });
-    }
 });
